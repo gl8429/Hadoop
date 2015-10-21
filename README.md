@@ -5,6 +5,11 @@ In this project, we implement a text analyzer using Hadoop, which is a programmi
 * Text: “Mr. Bingley was good-looking and gentlemanlike; he had a pleasant countenance, and easy, unaffected manners.”
 * Occurrences: For the word Bingley, “and” appears twice and “gentlemanlike” appears once. In this calculation, we say Bingley is a ‘contextword’; “and” and “gentlemanlike” are ‘query- words’. The other example: for the contextword and, “pleasant” appears once, “and” appears once (not zero times or twice).
 
+## Instruction
+Source code is in src.
+Output is in result.
+You can run script through script file to complie your JAVA file and run hadoop.
+
 ## Output format
 contextword1 <br />
 \<queryword1, occurrence\> <br />
