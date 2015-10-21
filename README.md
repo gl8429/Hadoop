@@ -7,9 +7,9 @@ In this project, we implement a text analyzer using Hadoop, which is a programmi
 
 ## Output format
 contextword1__
-\<queryword1, occurrence\>__
+\<queryword1, occurrence\>_
 \<queryword2, occurrence\>__
 
 contextword2__
-\<queryword1, occurrence\>__
+\<queryword1, occurrence\> <br />
 \<queryword2, occurrence\>__
