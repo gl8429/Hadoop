@@ -6,10 +6,10 @@ In this project, we implement a text analyzer using Hadoop, which is a programmi
 * Occurrences: For the word Bingley, “and” appears twice and “gentlemanlike” appears once. In this calculation, we say Bingley is a ‘contextword’; “and” and “gentlemanlike” are ‘query- words’. The other example: for the contextword and, “pleasant” appears once, “and” appears once (not zero times or twice).
 
 ## Output format
-contextword1__
-\<queryword1, occurrence\>_
-\<queryword2, occurrence\>__
-
-contextword2__
+contextword1 <br />
 \<queryword1, occurrence\> <br />
-\<queryword2, occurrence\>__
+\<queryword2, occurrence\> <br />
+
+contextword2 <br />
+\<queryword1, occurrence\> <br />
+\<queryword2, occurrence\><br />
