@@ -10,4 +10,4 @@ contextword1
 <queryword2, occurrence>
 contextword2
 <queryword1, occurrence>
-<queryword2, occurrence>
+<queryword2, occurrence> 
