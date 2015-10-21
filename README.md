@@ -4,6 +4,7 @@ In this project, we implement a text analyzer using Hadoop, which is a programmi
 ## Here is an example for calculating the occurrences:
 * Text: “Mr. Bingley was good-looking and gentlemanlike; he had a pleasant countenance, and easy, unaffected manners.”
 * Occurrences: For the word Bingley, “and” appears twice and “gentlemanlike” appears once. In this calculation, we say Bingley is a ‘contextword’; “and” and “gentlemanlike” are ‘query- words’. The other example: for the contextword and, “pleasant” appears once, “and” appears once (not zero times or twice).
+
 ## Output format
 contextword1
 <queryword1, occurrence>
