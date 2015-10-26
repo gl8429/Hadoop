@@ -36,8 +36,11 @@ public class TextAnalyzer {
                     for (String t : summary.keySet()) {
                         if (!t.equals(s)) {
                             query.set(t + "#" + summary.get(t));
-                            output.collect(context, query);
                         }
+                        else {
+                            query.set(t + "#" + (summary.get(t) - 1));
+                        }
+                        output.collect(context, query);
                     }
                 }
             }
@@ -47,35 +50,39 @@ public class TextAnalyzer {
     public static class Reduce extends MapReduceBase implements Reducer<Text, Text, Text, Text> {
         public void reduce(Text key, Iterator<Text> values, OutputCollector<Text, Text> output, Reporter reporter) throws IOException {
                  HashMap<String, Integer> summary = new HashMap<String, Integer>();
-            while (values.hasNext()) {
-                String collector = values.next().toString();
-                String word = collector.split("#")[0];
-                Integer number = Integer.parseInt(collector.split("#")[1]);
-                if (summary.containsKey(word)) {
-                    Integer num = summary.get(word) + number;
-                    summary.put(word, num);
-                } else {
-                    summary.put(word, number);
-                }
-            }
-            output.collect(key, new Text(""));
-            for (String s : summary.keySet()) {
-                Text queryword = new Text("<" + s + ",");
-                Text occurrence = new Text(summary.get(s).toString() + ">");
-                output.collect(queryword, occurrence);
-            }
-            output.collect(new Text(""), new Text(""));
+		 while (values.hasNext()) {
+		      String collector = values.next().toString();
+		      String word = collector.split("#")[0];
+		      Integer number = Integer.parseInt(collector.split("#")[1]);
+
+		      if (summary.containsKey(word)) {
+			  Integer num = summary.get(word) + number;
+			  summary.put(word, num);
+		      } else {
+			  summary.put(word, number);
+		      }
+		 }
+		 output.collect(key, new Text(""));
+		 for (String s : summary.keySet()) {
+		     Text queryword = new Text("<" + s + ",");
+		     Text occurrence = new Text(summary.get(s).toString() + ">");
+		     output.collect(queryword, occurrence);
+		}
+		output.collect(new Text(""), new Text(""));
         }
     }
 
     public static void main(String[] args) throws Exception {
         JobConf conf = new JobConf(TextAnalyzer.class);
-        
         conf.setJobName("textanalyzer");
+
         conf.setOutputKeyClass(Text.class);
         conf.setOutputValueClass(Text.class);
+
         conf.setMapperClass(Map.class);
+        //conf.setCombinerClass(Reduce.class);
         conf.setReducerClass(Reduce.class);
+
         conf.setInputFormat(TextInputFormat.class);
         conf.setOutputFormat(TextOutputFormat.class);
 
