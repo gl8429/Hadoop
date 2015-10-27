@@ -36,11 +36,14 @@ public class TextAnalyzer {
                     for (String t : summary.keySet()) {
                         if (!t.equals(s)) {
                             query.set(t + "#" + summary.get(t));
+                            output.collect(context, query);
                         }
                         else {
-                            query.set(t + "#" + (summary.get(t) - 1));
+                            if (summary.get(t) - 1 != 0) {
+                                query.set(t + "#" + (summary.get(t) - 1));
+                                output.collect(context, query);
+                            }
                         }
-                        output.collect(context, query);
                     }
                 }
             }
